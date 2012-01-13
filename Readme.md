@@ -1,17 +1,7 @@
 
-# HTML5 Express EJS Boilerplate ("H5EEB")
+# Bromansion meme creation
 
-Get started with a modern boilerplate for [Express](http://expressjs.com)!
-
-Everyone has their own boilerplate. Why use this one?
-
-* No jade or stylus. Use what you know, straight html and css
-* No databases pre-installed. Choose what you want.
-* Recent jQuery (1.7.1)
-
-## Requirements
-  * [node](https://github.com/joyent/node)
-  * [npm](https://github.com/isaacs/npm)
+Create memes in your browser using canvas and upload them easily.
 
 # Quick Start
 
