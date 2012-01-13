@@ -208,21 +208,43 @@ td { vertical-align: top; }
 
 
 /* ==|== primary styles =====================================================
-   Author: 
+   Author: Nick Motherfuckin' C
    ========================================================================== */
 
+button {
+  font-size: 20px;
+  margin: 5px;
+}
+textarea {
+  float: left;
+  width: 300px;
+  height: 90px;
+  font-size: 20px;
+}
 
+.direction_controls {
+  width: 200px;
+  text-align: center;
+  float: left;
+}
+.direction_controls button{
+  display: inline-block;
+  
+}
 
+.inline button{
+  display: inline-block;
+  width: 80px;
+  margin: 0px auto;
+}
 
+.size_controls {
+  float: left;
+}
 
-
-
-
-
-
-
-
-
+.controls {
+  float: left;
+}
 
 
 

@@ -1,6 +1,6 @@
 {
-  "name": "Express-EJS-Boilerplate",
-  "description": "HTML5 Express EJS Boilerplate. None of that jade or stylus business. Straight CSS and EJS templating.",
+  "name": "bromansion",
+  "description": "Client-side meme creator with server-side storage.",
   "version": "0.0.1",
   "author": "Nick Carneiro <nickc@trillworks.com>",
   "contributors": [
@@ -17,7 +17,7 @@
     , "clean-css": ">= 0.2.4"
   },
   "main": "server.js",
-  "keywords": ["h5eb", "html5", "express", "boilerplate", "ejs"],
+  "keywords": ["meme", "meme creator", "canvas", "image editor"],
   "repository": "git://github.com/niftylettuce/html5-express-boilerplate",
   "bin": { "h5eb": "./bin/h5eb" },
   "scripts": { "prepublish" : "npm prune" },

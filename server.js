@@ -18,7 +18,9 @@ var express = require('express'),
 		sys = require('util'),
 		mime = require('mime'),
 		cleanCSS = require('clean-css'),
-		app = module.exports = express.createServer();
+		app = module.exports = express.createServer(),
+		fs = require('fs'),
+		uuid = require('dirty-uuid');
 
 
 /*===========================================================================
@@ -44,8 +46,13 @@ var port = 4000,
 app.configure(function(){
 	app.set('views', __dirname + '/views');
 	app.set('view engine', 'ejs');
-	app.use(express.bodyParser());
+	
+	app.use(express.bodyParser({ uploadDir: 'public/images' }));
 	app.use(express.methodOverride());
+	express.bodyParser.parse['application/text'] = function(req, options, callback){
+		
+	}
+	
 	app.use(express.favicon(__dirname + '/public/favicon.ico'));
 	app.use(app.router);
 	if(logs.set) app.use(express.logger(logs.string));
@@ -127,17 +134,39 @@ app.use(function(err, req, res, next){
 	YOUR ROUTES
 ============================================================================= */
 
+
 // Index
 app.get('/', function(req, res) {
 	res.render('index', {
 		modernizr: "javascripts/libs/modernizr-2.0.6.min.js",
 		jquery: "javascripts/libs/jquery-1.7.1.min.js",
-		title: 'this is a title',
+		title: 'Bromansion | Fudge Mansion Discovery Zone | Grow Animals / Youth Hostel',
 		description: 'this is a description',
-		javascripts: ["javascripts/script.js"],
+		javascripts: ["javascripts/script.js", "javascripts/jcanvas.min.js"],
 		stylesheets: ["style.css"]
 	});
 });
+
+app.post('/upload', function(req, res){
+	console.log("got image upload post request");
+	res.send('thanks for the image');
+	var base64Data = req.body.image.replace(/^data:image\/jpeg;base64,/,"")
+	var binaryData = new Buffer(base64Data, 'base64').toString('binary');
+	var filename = "public/images/" + uuid() + ".jpg";
+	fs.writeFile(filename, binaryData, "binary", function(err) {
+		if(err){
+			console.log("error saving file");
+			console.log(err);
+		}
+	});
+	//save the base64 data as an image
+	
+	//var base64Data = req.body.replace(/^data:image\/jpeg;base64,/,"");
+	//var dataBuffer = new Buffer(base64Data, 'base64');
+
+	
+	
+})
 
 /*===========================================================================
 	ERROR TESTING
