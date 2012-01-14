@@ -215,6 +215,7 @@ body{
   text-align: center;
   background-image: url("../images/bg.png");
   background-repeat: repeat-x repeat-y;
+  padding-top: 50px;
 }
 .bromeme {
   display: inline-block;

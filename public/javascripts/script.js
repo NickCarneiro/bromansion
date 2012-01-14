@@ -6,7 +6,7 @@ var text_size = 60;
 var text_x = 0;
 var text_y = 0;
 var text_content = "";
-var enter_caption = "Enter caption here...";
+var enter_caption = "Enter caption here. Hit enter to make a new line.";
 var text_stroke = 5;
 var image_source = "images/demo.jpg"
 
@@ -70,6 +70,7 @@ $(".brothumb").live("click", function(){
 });
 
 $("#submit").click(function(){
+	
 	var imageData = {image: $("canvas").getCanvasImage("jpg")};
 	var settings = {
 		url: "/upload",

@@ -135,7 +135,6 @@ app.use(function(err, req, res, next){
 	YOUR ROUTES
 ============================================================================= */
 
-
 // Index
 app.get('/', function(req, res) {
 	//get array of bros
@@ -144,7 +143,7 @@ app.get('/', function(req, res) {
 			modernizr: "javascripts/libs/modernizr-2.0.6.min.js",
 			jquery: "javascripts/libs/jquery-1.7.1.min.js",
 			title: 'Bromansion | Fudge Mansion Discovery Zone | Grow Animals / Youth Hostel',
-			javascripts: ["javascripts/script.js", "javascripts/jcanvas.min.js"],
+			javascripts: ["javascripts/index.js"],
 			stylesheets: ["style.css"],
 			bros: docs
 		});
@@ -158,7 +157,7 @@ app.get('/bro/:id', function(req, res){
 			modernizr: "javascripts/libs/modernizr-2.0.6.min.js",
 			jquery: "javascripts/libs/jquery-1.7.1.min.js",
 			title: 'Bromansion | Fudge Mansion Discovery Zone | Grow Animals / Youth Hostel',
-			javascripts: ["javascripts/script.js", "javascripts/jcanvas.min.js"],
+			javascripts: ["javascripts/jcanvas.min.js","javascripts/script.js"],
 			bro: docs[0],
 			stylesheets: ["style.css"]
 		});
@@ -170,18 +169,27 @@ app.get('/addbro', function(req, res) {
 		modernizr: "javascripts/libs/modernizr-2.0.6.min.js",
 		jquery: "javascripts/libs/jquery-1.7.1.min.js",
 		title: 'Bromansion | Fudge Mansion Discovery Zone | Grow Animals / Youth Hostel',
-		javascripts: ["javascripts/script.js", "javascripts/jcanvas.min.js"],
+		javascripts: ["javascripts/jcanvas.min.js", "javascripts/script.js"],
 		stylesheets: ["style.css"]
 	});
 });
 
+//used by ajax call to get a file list of the bro templates
 app.get('/bros', function(req, res) {
 	var brolist = fs.readdirSync('public/images/bros');
 	res.json(brolist);
 });
+
+app.get('/captions', function(req, res) {
+	db.bros.find({}).sort({_id: -1}, function(err, docs){
+		res.json(docs);
+	});
+	
+});
+
 app.post('/upload', function(req, res){
 	console.log("got image upload post request");
-	res.send('thanks for the image');
+	
 	var base64Data = req.body.image.replace(/^data:image\/jpeg;base64,/,"")
 	var binaryData = new Buffer(base64Data, 'base64').toString('binary');
 	var new_uuid = uuid();
@@ -199,6 +207,7 @@ app.post('/upload', function(req, res){
 					console.log("inserting db record");
 					console.log(err);
 				} 
+				res.send('thanks for the image');
 			})
 		} 	
 

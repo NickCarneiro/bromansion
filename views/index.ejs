@@ -2,7 +2,14 @@
 	<a href="/addbro">Add a new bro meme</a>
 </div>
 
-<% for(var i=0; i < bros.length; i++) {%>
+<% 
+var max_bros = 0;
+if(bros.length > 5){
+	max_bros = 5;
+} else {
+	max_bros = bros.length;
+}
+for(var i=0; i < max_bros; i++) {%>
 	<div class="bromeme">
 		<a href="/bro/<%= bros[i].image_uuid %>">
 			<img src="/images/captions/<%= bros[i].image_uuid %>.jpg" />
