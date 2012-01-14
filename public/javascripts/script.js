@@ -26,13 +26,13 @@ $("textarea").focus(function(){
 
 //font size controls
 $("#bigger").click(function(){
-	text_size += 10;
+	text_size += 6;
 	text_stroke = text_size / 8;
 	redraw();
 })
 
 $("#smaller").click(function(){
-	text_size -= 10;
+	text_size -= 6;
 	text_stroke = text_size / 8;
 	redraw();
 })

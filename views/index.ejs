@@ -1,1 +1,12 @@
-<a href="/addbro">Add a new bro meme</a>
+<div class="fixed">
+	<a href="/addbro">Add a new bro meme</a>
+</div>
+
+<% for(var i=0; i < bros.length; i++) {%>
+	<div class="bromeme">
+		<a href="/bro/<%= bros[i].image_uuid %>">
+			<img src="/images/captions/<%= bros[i].image_uuid %>.jpg" />
+		</a>
+	</div>
+	<br />
+<% } %> 

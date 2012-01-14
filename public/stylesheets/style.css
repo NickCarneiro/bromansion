@@ -210,11 +210,34 @@ td { vertical-align: top; }
 /* ==|== primary styles =====================================================
    Author: Nick Motherfuckin' C
    ========================================================================== */
+
+body{
+  text-align: center;
+  background-image: url("../images/bg.png");
+  background-repeat: repeat-x repeat-y;
+}
+.bromeme {
+  display: inline-block;
+  margin-bottom: 50px;
+  padding:5px;
+  background-color: #fff;
+  box-shadow: #d5d5d5 0 5px 6px 0;
+}
+.fixed {
+  position: fixed;
+  right:0px;
+  bottom:0px;
+}
+
+.fixed a{
+  font-size: 30px;
+  background: #fff;
+  padding: 5px;
+}
 /* begin top panel */
 
 .top_container{
   display: block;
-  background: blue;
 }
 
 .brothumb{
@@ -230,11 +253,10 @@ canvas {
   height: 600px;
   width: 800px;
   overflow-y: scroll;
-  background: red;
+  background-color: #eee;
 }
 
 .thumb_container {
-  background: green;
   display: inline-block;
   overflow-y: scroll;
   height: 550px;
@@ -249,7 +271,7 @@ ul {
 /* begin bottoms controls bar */ 
 .controls {
   height: 100px;
-  background: yellow;
+  background-color: #eee;
 }
 
 button {

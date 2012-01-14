@@ -20,14 +20,15 @@ var express = require('express'),
 		cleanCSS = require('clean-css'),
 		app = module.exports = express.createServer(),
 		fs = require('fs'),
-		uuid = require('dirty-uuid');
+		uuid = require('dirty-uuid'),
+		db = require('mongojs').connect('mongodb://localhost/bromansion', ['bros']);
 
 
 /*===========================================================================
 	SETTINGS
 ============================================================================= */
 
-var port = 4000,
+var port = 3008,
 		cacheAge = 60000 * 60 * 24 * 365,
 		logs = {
 			set: false,
@@ -137,15 +138,33 @@ app.use(function(err, req, res, next){
 
 // Index
 app.get('/', function(req, res) {
-	res.render('index', {
-		modernizr: "javascripts/libs/modernizr-2.0.6.min.js",
-		jquery: "javascripts/libs/jquery-1.7.1.min.js",
-		title: 'Bromansion | Fudge Mansion Discovery Zone | Grow Animals / Youth Hostel',
-		javascripts: ["javascripts/script.js", "javascripts/jcanvas.min.js"],
-		stylesheets: ["style.css"]
-	});
+	//get array of bros
+	db.bros.find({}).sort({_id: -1}, function(err, docs){
+		res.render('index', {
+			modernizr: "javascripts/libs/modernizr-2.0.6.min.js",
+			jquery: "javascripts/libs/jquery-1.7.1.min.js",
+			title: 'Bromansion | Fudge Mansion Discovery Zone | Grow Animals / Youth Hostel',
+			javascripts: ["javascripts/script.js", "javascripts/jcanvas.min.js"],
+			stylesheets: ["style.css"],
+			bros: docs
+		});
+	})
+	
 });
-
+app.get('/bro/:id', function(req, res){
+	db.bros.find({'image_uuid': req.params.id}, function(err, docs){
+		console.log(docs);
+		res.render('singlebro', {
+			modernizr: "javascripts/libs/modernizr-2.0.6.min.js",
+			jquery: "javascripts/libs/jquery-1.7.1.min.js",
+			title: 'Bromansion | Fudge Mansion Discovery Zone | Grow Animals / Youth Hostel',
+			javascripts: ["javascripts/script.js", "javascripts/jcanvas.min.js"],
+			bro: docs[0],
+			stylesheets: ["style.css"]
+		});
+	});
+	
+});
 app.get('/addbro', function(req, res) {
 	res.render('addbro', {
 		modernizr: "javascripts/libs/modernizr-2.0.6.min.js",
@@ -165,12 +184,24 @@ app.post('/upload', function(req, res){
 	res.send('thanks for the image');
 	var base64Data = req.body.image.replace(/^data:image\/jpeg;base64,/,"")
 	var binaryData = new Buffer(base64Data, 'base64').toString('binary');
-	var filename = "public/images/captions/" + uuid() + ".jpg";
+	var new_uuid = uuid();
+	var filename = "public/images/captions/" + new_uuid + ".jpg";
 	fs.writeFile(filename, binaryData, "binary", function(err) {
 		if(err){
 			console.log("error saving file");
 			console.log(err);
-		}
+		} else{
+			//add file to the database
+			var date = (new Date()).toJSON();
+			var image = {image_uuid: new_uuid, date: date};
+			db.bros.insert(image, function(error, value){
+				if(err){
+					console.log("inserting db record");
+					console.log(err);
+				} 
+			})
+		} 	
+
 	});
 	//save the base64 data as an image
 	
