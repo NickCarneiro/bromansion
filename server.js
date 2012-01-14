@@ -141,18 +141,31 @@ app.get('/', function(req, res) {
 		modernizr: "javascripts/libs/modernizr-2.0.6.min.js",
 		jquery: "javascripts/libs/jquery-1.7.1.min.js",
 		title: 'Bromansion | Fudge Mansion Discovery Zone | Grow Animals / Youth Hostel',
-		description: 'this is a description',
 		javascripts: ["javascripts/script.js", "javascripts/jcanvas.min.js"],
 		stylesheets: ["style.css"]
 	});
 });
 
+app.get('/addbro', function(req, res) {
+	res.render('addbro', {
+		modernizr: "javascripts/libs/modernizr-2.0.6.min.js",
+		jquery: "javascripts/libs/jquery-1.7.1.min.js",
+		title: 'Bromansion | Fudge Mansion Discovery Zone | Grow Animals / Youth Hostel',
+		javascripts: ["javascripts/script.js", "javascripts/jcanvas.min.js"],
+		stylesheets: ["style.css"]
+	});
+});
+
+app.get('/bros', function(req, res) {
+	var brolist = fs.readdirSync('public/images/bros');
+	res.json(brolist);
+});
 app.post('/upload', function(req, res){
 	console.log("got image upload post request");
 	res.send('thanks for the image');
 	var base64Data = req.body.image.replace(/^data:image\/jpeg;base64,/,"")
 	var binaryData = new Buffer(base64Data, 'base64').toString('binary');
-	var filename = "public/images/" + uuid() + ".jpg";
+	var filename = "public/images/captions/" + uuid() + ".jpg";
 	fs.writeFile(filename, binaryData, "binary", function(err) {
 		if(err){
 			console.log("error saving file");

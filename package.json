@@ -15,6 +15,8 @@
     , "mime": ">= 1.2.2"
     , "commander": ">= 0.1.0"
     , "clean-css": ">= 0.2.4"
+    , "dirty-uuid": ">= 0.0.2" 
+    , "mongojs": ">= 0.2.6" 
   },
   "main": "server.js",
   "keywords": ["meme", "meme creator", "canvas", "image editor"],

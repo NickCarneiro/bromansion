@@ -210,26 +210,67 @@ td { vertical-align: top; }
 /* ==|== primary styles =====================================================
    Author: Nick Motherfuckin' C
    ========================================================================== */
+/* begin top panel */
+
+.top_container{
+  display: block;
+  background: blue;
+}
+
+.brothumb{
+  width: 100px;
+}
+
+canvas {
+  margin: 10px;
+}
+
+.canvas_container{
+  display: inline-block;
+  height: 600px;
+  width: 800px;
+  overflow-y: scroll;
+  background: red;
+}
+
+.thumb_container {
+  background: green;
+  display: inline-block;
+  overflow-y: scroll;
+  height: 550px;
+}
+ul {
+  list-style: none;
+  margin-left: -30px;
+}
+
+/* end top panel */
+
+/* begin bottoms controls bar */ 
+.controls {
+  height: 100px;
+  background: yellow;
+}
 
 button {
+  display: inline-block;
   font-size: 20px;
   margin: 5px;
 }
 textarea {
-  float: left;
+  display: inline-block;
   width: 300px;
   height: 90px;
   font-size: 20px;
 }
 
 .direction_controls {
+  display: inline-block;
   width: 200px;
   text-align: center;
-  float: left;
 }
 .direction_controls button{
   display: inline-block;
-  
 }
 
 .inline button{
@@ -239,12 +280,11 @@ textarea {
 }
 
 .size_controls {
-  float: left;
+  display: inline-block;
 }
 
-.controls {
-  float: left;
-}
+/* end bottoms controls */
+
 
 
 

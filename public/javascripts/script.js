@@ -8,12 +8,10 @@ var text_y = 0;
 var text_content = "";
 var enter_caption = "Enter caption here...";
 var text_stroke = 5;
+var image_source = "images/demo.jpg"
+
 $(function(){
 	
-
-
-
-
 
 $("textarea").keyup(function(){
 	text_content = $("textarea").val();
@@ -59,6 +57,18 @@ $("#right").click(function() {
 	redraw();
 });
 
+$(".brothumb").live("click", function(){
+	
+	image_source = $(this).attr("src");
+	$(this).removeClass("brothumb");
+	var img = {};
+	img.width = $(this).width();
+	img.height = $(this).height();
+	$(this).addClass("brothumb");
+	console.log(image_source);
+	initialDraw(img);
+});
+
 $("#submit").click(function(){
 	var imageData = {image: $("canvas").getCanvasImage("jpg")};
 	var settings = {
@@ -74,22 +84,70 @@ $("#submit").click(function(){
 	function uploadCallback(res){
 		console.log("got success response");
 		console.log(res);
+		//redirect to home page.
+		window.location = "/";
 	}
 
 	function errorCallback(xhr, textStatus, error){
 		console.log("error during upload");
 		console.log(xhr);
+		alert("There was a problem uploading your bro. Sorry, bro.");
 	}
 });
 
-//show image on page load
-redraw();
+//show first image in bro list on page load
+
+
+//populate bro list on page load
+$.get("/bros", 
+	function(urls){
+		for(var i = 0; i < urls.length; i++){
+			//add bro to list
+			addBroThumb(urls[i]);
+		}
+
+	var first_thumb = $(".brothumb")[0];
+	$(first_thumb).load(function(){
+	image_source = $(first_thumb).attr("src");
+	$(first_thumb).removeClass("brothumb");
+	var img = {};
+	img.width = $(first_thumb).width();
+	img.height = $(first_thumb).height();
+	$(first_thumb).addClass("brothumb");
+	console.log(image_source);
+
+	initialDraw(img);
+})
+	});
+
+
+
 });
 
+
+
+
+function addBroThumb(url){
+	$("#brolist").append('<li><img class="brothumb" src="images/bros/'+url+'" /></li>');
+}
+
+
+
+//used
+function initialDraw(img){
+
+	
+	//resize canvas for image
+	$("canvas").attr("width", img.width);
+	$("canvas").attr("height", img.height);
+
+	redraw();
+}
 function redraw(){
+	
 	//redraw image to overwrite canvas
 	$("#canvas").drawImage({
-		source: "images/demo.jpg",
+		source: image_source,
 		fromCenter: false,
 		load: applyText
 	});
