@@ -33,7 +33,9 @@ function insertCaption(uuid){
 	var caption = 
 	'<div class="bromeme">'+
 		'<a href="/bro/'+ uuid+'">'+
-			'<img src="/images/captions/'+uuid+'.jpg" /></a> </div> <br />';
+			'<img src="/images/captions/'+uuid+'.jpg" /></a> </div> <br />'+
+			'<div class="fb-comments" data-href="http://bromansion.com?imageuuid='+uuid+'" data-num-posts="2" data-width="470">'+
+	'</div><br /> <script>FB.XFBML.parse();</script>';
 	$("#container").append(caption);
 	
 }
