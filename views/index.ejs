@@ -1,5 +1,20 @@
-<div class="fixed">
+
+<div id="explanation">
+This is a website where any randomo can create "bro memes". In this case that means text superimposed onto images of college students.
+It's really out of our hands at this point. People we don't know are responsible for all the weird NSFW stuff.
+<br />
+Come meet your friendly neighborhood bros at Bromansion. 2833 Pearl St! 
+<br />
+<br />
+<button id="close_explanation">I feels ya, bro.</button>
+</div>
+
+<div class="fixed_right fixed">
 	<a href="/addbro">Add a new bro meme</a>
+</div>
+
+<div class="fixed_left fixed">
+	<a id="about">What is this all about?</a>
 </div>
 
 <% 
@@ -15,5 +30,10 @@ for(var i=0; i < max_bros; i++) {%>
 			<img src="/images/captions/<%= bros[i].image_uuid %>.jpg" />
 		</a>
 	</div>
+
 	<br />
+	<div class="fb-comments" data-href="http://bromansion.com?imageuuid<%= bros[i].image_uuid%>" data-num-posts="2" data-width="470">
+	</div>
+	<br />
+
 <% } %> 

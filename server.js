@@ -140,8 +140,8 @@ app.get('/', function(req, res) {
 	//get array of bros
 	db.bros.find({}).sort({_id: -1}, function(err, docs){
 		res.render('index', {
-			modernizr: "javascripts/libs/modernizr-2.0.6.min.js",
-			jquery: "javascripts/libs/jquery-1.7.1.min.js",
+			modernizr: "/javascripts/libs/modernizr-2.0.6.min.js",
+			jquery: "/javascripts/libs/jquery-1.7.1.min.js",
 			title: 'Bromansion | Fudge Mansion Discovery Zone | Grow Animals / Youth Hostel',
 			javascripts: ["javascripts/index.js"],
 			stylesheets: ["style.css"],
@@ -154,10 +154,10 @@ app.get('/bro/:id', function(req, res){
 	db.bros.find({'image_uuid': req.params.id}, function(err, docs){
 		console.log(docs);
 		res.render('singlebro', {
-			modernizr: "javascripts/libs/modernizr-2.0.6.min.js",
-			jquery: "javascripts/libs/jquery-1.7.1.min.js",
+			modernizr: "/javascripts/libs/modernizr-2.0.6.min.js",
+			jquery: "/javascripts/libs/jquery-1.7.1.min.js",
 			title: 'Bromansion | Fudge Mansion Discovery Zone | Grow Animals / Youth Hostel',
-			javascripts: ["javascripts/jcanvas.min.js","javascripts/script.js"],
+			javascripts: ["/javascripts/jcanvas.min.js","/javascripts/script.js"],
 			bro: docs[0],
 			stylesheets: ["style.css"]
 		});
@@ -166,10 +166,10 @@ app.get('/bro/:id', function(req, res){
 });
 app.get('/addbro', function(req, res) {
 	res.render('addbro', {
-		modernizr: "javascripts/libs/modernizr-2.0.6.min.js",
-		jquery: "javascripts/libs/jquery-1.7.1.min.js",
+		modernizr: "/javascripts/libs/modernizr-2.0.6.min.js",
+		jquery: "/javascripts/libs/jquery-1.7.1.min.js",
 		title: 'Bromansion | Fudge Mansion Discovery Zone | Grow Animals / Youth Hostel',
-		javascripts: ["javascripts/jcanvas.min.js", "javascripts/script.js"],
+		javascripts: ["/javascripts/jcanvas.min.js", "/javascripts/script.js"],
 		stylesheets: ["style.css"]
 	});
 });

@@ -16,6 +16,18 @@ $(window).scroll(function(){
 	}
 });
  
+$("#close_explanation").click(function(){
+	$("#explanation").hide();
+})
+
+$("#explanation").hide();
+
+
+$("#about").live("click", function(){
+	console.log("explanation");
+	$("#explanation").toggle();
+});
+
 function insertCaption(uuid){
 	
 	var caption = 

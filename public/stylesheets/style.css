@@ -215,7 +215,15 @@ body{
   text-align: center;
   background-image: url("../images/bg.png");
   background-repeat: repeat-x repeat-y;
-  padding-top: 50px;
+  padding-top: 10px;
+}
+
+#about {
+  cursor: pointer;
+}
+
+.fb-comments{
+  margin-bottom: 50px;
 }
 .bromeme {
   display: inline-block;
@@ -224,7 +232,7 @@ body{
   background-color: #fff;
   box-shadow: #d5d5d5 0 5px 6px 0;
 }
-.fixed {
+.fixed_right {
   position: fixed;
   right:0px;
   bottom:0px;
@@ -234,6 +242,24 @@ body{
   font-size: 30px;
   background: #fff;
   padding: 5px;
+}
+.fixed_left {
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+}
+
+
+#explanation {
+  font-size: 20px;
+  position: fixed;
+  top: 10%;
+  width: 30%;
+  left: 30%;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: #d5d5d5 0 10px 10px 0;
+  z-index: 100;
 }
 /* begin top panel */
 
@@ -251,7 +277,7 @@ canvas {
 
 .canvas_container{
   display: inline-block;
-  height: 600px;
+  height: 550px;
   width: 800px;
   overflow-y: scroll;
   background-color: #eee;
