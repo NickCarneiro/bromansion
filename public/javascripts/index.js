@@ -1,7 +1,7 @@
 $(function(){
 	
 var captions = "";
-var page = 1;
+var page = 0;
 var page_size = 5;
 
 $.get("/captions", 
@@ -45,6 +45,8 @@ function loadNextPage(){
 	page++;
 	var page_start = page_size * page;
 	var page_stop = page_start + page_size
+
+	
 	for(var i = page_start; i < page_stop && i < captions.length; i++){
 		insertCaption(captions[i].image_uuid);
 	} 

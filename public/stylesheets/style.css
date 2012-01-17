@@ -251,6 +251,7 @@ body{
 
 
 #explanation {
+  text-align: left;
   font-size: 20px;
   position: fixed;
   top: 10%;
