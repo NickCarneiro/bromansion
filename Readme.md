@@ -1,11 +1,10 @@
-
 # Bromansion meme creation
 
 Create memes in your browser using canvas and upload them easily.
 
 # Live Demo
 
-http://bromansion.com
+No longer available.
 
 # Quick Start
 
